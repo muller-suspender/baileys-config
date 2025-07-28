@@ -1,8 +1,7 @@
-```json
+json
 {
   "version": "4.5.0",
   "updated": "2025-07-28",
   "author": "Muller Suspender",
   "note": "Custom Baileys version for private and public bot"
 }
-```
