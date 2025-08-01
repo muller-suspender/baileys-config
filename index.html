@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Report Abusive WhatsApp Numbers</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 500px;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      margin-top: 5px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: #25D366;
+      color: white;
+      border: none;
+      font-weight: bold;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    .output {
+      margin-top: 15px;
+      background: #eee;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Report Abusive WhatsApp Number</h2>
+    <label for="number">WhatsApp Number (e.g., +254712345678):</label>
+    <input type="text" id="number" placeholder="+254...">
+    <button onclick="reportNumber()">Report Number</button>
+
+    <div class="output" id="reportOutput"></div>
+
+    <h2 style="margin-top: 30px;">Send a Review</h2>
+    <label for="review">Your Review:</label>
+    <textarea id="review" rows="4" placeholder="Write your review..."></textarea>
+    <button onclick="sendReview()">Submit Review</button>
+
+    <div class="output" id="reviewOutput"></div>
+  </div>
+
+  <script>
+    async function reportNumber() {
+      const number = document.getElementById("number").value.trim();
+      const output = document.getElementById("reportOutput");
+      output.innerHTML = "";
+
+      if (!number) {
+        output.innerHTML = "❌ Please enter a number.";
+        return;
+      }
+
+      for (let i = 1; i <= 20; i++) {
+        output.innerHTML += `✅ Report ${i} sent for ${number}<br>`;
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+
+      output.innerHTML += `<br>✔️ Finished reporting ${number} 20 times.`;
+    }
+
+    function sendReview() {
+      const reviewText = document.getElementById("review").value.trim();
+      const reviewOutput = document.getElementById("reviewOutput");
+
+      if (!reviewText) {
+        reviewOutput.innerHTML = "❌ Please write a review.";
+        return;
+      }
+
+      // Save or send review here (e.g., to a backend or email)
+      reviewOutput.innerHTML = `✅ Thanks for your review:<br>"${reviewText}"`;
+      document.getElementById("review").value = "";
+    }
+  </script>
+</body>
+</html>
